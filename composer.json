@@ -1,6 +1,7 @@
 {
     "name": "4ernovm/whmcs-events",
     "description": "Wraps WHMCS hooks into Symfony's event dispatcher",
+    "minimum-stability": "dev",
     "authors": [
         { "name": "Michael Chernov", "email": "4ernovm@gmail.com" }
     ],
