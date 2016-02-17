@@ -15,9 +15,9 @@
         }
     ],
     "require": {
-        "4ernovm/whm-foundation": "0.1.*",
-        "4ernovm/whm-container": "0.1.*",
-        "symfony/event-dispatcher": "2.8-dev"
+        "4ernovm/whm-foundation": "~0.1",
+        "4ernovm/whm-container": "~0.1",
+        "symfony/event-dispatcher": "v2.6.9"
     },
     "autoload": {
         "psr-4": {
