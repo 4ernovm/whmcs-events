@@ -5,7 +5,7 @@
         { "name": "Michael Chernov", "email": "4ernovm@gmail.com" }
     ],
     "require": {
-        "4ernovm/whm-orm": "0.1.*",
+        "4ernovm/whm-foundation": "0.1.*",
         "4ernovm/whm-container": "0.1.*",
         "symfony/event-dispatcher": "2.8-dev"
     },
