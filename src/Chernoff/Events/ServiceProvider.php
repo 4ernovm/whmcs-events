@@ -3,7 +3,8 @@
 namespace Chernoff\Events;
 
 use Chernoff\Container\ServiceProvider as BaseProvider;
-use Chernoff\ORM\Models\Admin;
+use Chernoff\Foundation\ExceptionHandler;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
@@ -32,19 +33,17 @@ class ServiceProvider extends BaseProvider
     {
         /** @var EventDispatcher $dispatcher */
         $dispatcher = $this->app->make("dispatcher");
+        /** @var ExceptionHandler $exception */
+        $exception  = $this->app->make("exception_handler");
 
         foreach ($this->getHooks() as $hook) {
-            add_hook($hook, 1, function ($vars) use ($hook, $dispatcher) {
+            add_hook($hook, 1, function ($vars) use ($hook, $dispatcher, $exception) {
                 // We don't want to show errors to the customer so let's catch them and add log entries instead
                 try {
                     return $dispatcher->dispatch($hook, new WHMCSEvent($vars));
                 }
                 catch (\Exception $e) {
-                    $admin = Admin::firstOrNew(array('roleid' => 1));
-
-                    if ($admin->exists) {
-                        localAPI('logactivity', array('description' => $e->getMessage()), $admin->username);
-                    }
+                    $exception->handle($e);
                 }
 
                 return $vars;
@@ -69,23 +68,23 @@ class ServiceProvider extends BaseProvider
     {
         $hooks   = [];
         $classes = [
-            '\Chernoff\Events\Hooks\Addon',
-            '\Chernoff\Events\Hooks\Authentication',
-            '\Chernoff\Events\Hooks\Client',
-            '\Chernoff\Events\Hooks\ClientAreaInterface',
-            '\Chernoff\Events\Hooks\Contact',
-            '\Chernoff\Events\Hooks\Cron',
-            '\Chernoff\Events\Hooks\Domain',
-            '\Chernoff\Events\Hooks\Invoice',
-            '\Chernoff\Events\Hooks\Miscellaneous',
-            '\Chernoff\Events\Hooks\Module',
-            '\Chernoff\Events\Hooks\Output',
-            '\Chernoff\Events\Hooks\Product',
-            '\Chernoff\Events\Hooks\RegistrarModule',
-            '\Chernoff\Events\Hooks\Service',
-            '\Chernoff\Events\Hooks\ShoppingCart',
-            '\Chernoff\Events\Hooks\SupportTools',
-            '\Chernoff\Events\Hooks\Ticket',
+            'Chernoff\Events\Hooks\Addon',
+            'Chernoff\Events\Hooks\Authentication',
+            'Chernoff\Events\Hooks\Client',
+            'Chernoff\Events\Hooks\ClientAreaInterface',
+            'Chernoff\Events\Hooks\Contact',
+            'Chernoff\Events\Hooks\Cron',
+            'Chernoff\Events\Hooks\Domain',
+            'Chernoff\Events\Hooks\Invoice',
+            'Chernoff\Events\Hooks\Miscellaneous',
+            'Chernoff\Events\Hooks\Module',
+            'Chernoff\Events\Hooks\Output',
+            'Chernoff\Events\Hooks\Product',
+            'Chernoff\Events\Hooks\RegistrarModule',
+            'Chernoff\Events\Hooks\Service',
+            'Chernoff\Events\Hooks\ShoppingCart',
+            'Chernoff\Events\Hooks\SupportTools',
+            'Chernoff\Events\Hooks\Ticket',
         ];
 
         foreach ($classes as $class) {
