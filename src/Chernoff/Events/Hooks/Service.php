@@ -6,7 +6,7 @@ namespace Chernoff\Events\Hooks;
  * Class Service
  * @package Chernoff\Events\Hooks
  */
-class Service
+class Service extends Hook
 {
     const
         AdminClientServicesTabFields = "AdminClientServicesTabFields",
@@ -19,4 +19,17 @@ class Service
         ServiceEdit = "ServiceEdit",
         ServiceRecurringCompleted = "ServiceRecurringCompleted"
     ;
+
+    /** @var array */
+    protected static $expectedReturn = [
+        self::AdminClientServicesTabFields => "array|null",
+        self::AdminClientServicesTabFieldsSave => null,
+        self::AdminServiceEdit => null,
+        self::CancellationRequest => null,
+        self::PreAdminServiceEdit => null,
+        self::PreServiceEdit => null,
+        self::ServiceDelete => null,
+        self::ServiceEdit => null,
+        self::ServiceRecurringCompleted => null,
+    ];
 }

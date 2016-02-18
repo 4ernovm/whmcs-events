@@ -6,7 +6,7 @@ namespace Chernoff\Events\Hooks;
  * Class Domain
  * @package Chernoff\Events\Hooks
  */
-class Domain
+class Domain extends Hook
 {
     const
         AdminClientDomainsTabFields = "AdminClientDomainsTabFields",
@@ -17,4 +17,15 @@ class Domain
         DomainValidation = "DomainValidation",
         PreDomainRegister = "PreDomainRegister"
     ;
+
+    /** @var array */
+    protected static $expectedReturn = [
+        self::AdminClientDomainsTabFields => "array|null",
+        self::AdminClientDomainsTabFieldsSave => null,
+        self::ClientAreaDomainDetails => null,
+        self::DomainDelete => null,
+        self::DomainEdit => null,
+        self::DomainValidation => null,
+        self::PreDomainRegister => null,
+    ];
 }

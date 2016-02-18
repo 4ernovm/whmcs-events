@@ -13,6 +13,9 @@ class WHMCSEvent extends Event
     /** @var mixed */
     protected $vars;
 
+    /** @var mixed */
+    protected $result;
+
     /**
      * @param $vars
      */
@@ -36,6 +39,25 @@ class WHMCSEvent extends Event
     public function setVars($vars)
     {
         $this->vars = $vars;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * @param $result
+     * @return $this
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
 
         return $this;
     }

@@ -36,17 +36,23 @@ class ServiceProvider extends BaseProvider
         /** @var ExceptionHandler $exception */
         $exception  = $this->app->make("exception_handler");
 
-        foreach ($this->getHooks() as $hook) {
-            add_hook($hook, 1, function ($vars) use ($hook, $dispatcher, $exception) {
+        foreach ($this->getHooks() as $hook => $expectedResult) {
+            add_hook($hook, 1, function ($vars) use ($hook, $expectedResult, $dispatcher, $exception) {
                 // We don't want to show errors to the customer so let's catch them and add log entries instead
                 try {
-                    return $dispatcher->dispatch($hook, new WHMCSEvent($vars));
+                    $result = $dispatcher->dispatch($hook, new WHMCSEvent($vars));
+
+                    if ($result instanceof WHMCSEvent) {
+                        $result = $result->getResult();
+                    }
+
+                    // @TODO check if dispatcher has returned correct data type using $expectedResult
+
+                    return $result;
                 }
                 catch (\Exception $e) {
                     $exception->handle($e);
                 }
-
-                return $vars;
             });
         }
     }
@@ -88,10 +94,9 @@ class ServiceProvider extends BaseProvider
         ];
 
         foreach ($classes as $class) {
-            $reflection = new \ReflectionClass($class);
-            $hooks      = array_merge($hooks, $reflection->getConstants());
+            $hooks = array_merge($hooks, $class::getHooks());
         }
-        
+
         return $hooks;
     }
 }
