@@ -6,7 +6,7 @@ namespace Chernoff\Events\Hooks;
  * Class ClientAreaInterface
  * @package Chernoff\Events\Hooks
  */
-class ClientAreaInterface
+class ClientAreaInterface extends Hook
 {
     const
         ClientAreaPage = "ClientAreaPage",
@@ -60,4 +60,58 @@ class ClientAreaInterface
         ClientAreaPageViewTicket = "ClientAreaPageViewTicket",
         ClientAreaPageViewWHOIS = "ClientAreaPageViewWHOIS"
     ;
+
+    /** @var array */
+    protected static $expectedReturn = [
+        self::ClientAreaPage => "array|null",
+        self::ClientAreaPageAddContact => "array|null",
+        self::ClientAreaPageAddFunds => "array|null",
+        self::ClientAreaPageAffiliates => "array|null",
+        self::ClientAreaPageAnnouncements => "array|null",
+        self::ClientAreaPageBanned => "array|null",
+        self::ClientAreaPageBulkDomainManagement => "array|null",
+        self::ClientAreaPageCancellation => "array|null",
+        self::ClientAreaPageCart => "array|null",
+        self::ClientAreaPageChangePassword => "array|null",
+        self::ClientAreaPageConfigureSSL => "array|null",
+        self::ClientAreaPageContact => "array|null",
+        self::ClientAreaPageContacts => "array|null",
+        self::ClientAreaPageCreditCard => "array|null",
+        self::ClientAreaPageCreditCardCheckout => "array|null",
+        self::ClientAreaPageDomainAddons => "array|null",
+        self::ClientAreaPageDomainChecker => "array|null",
+        self::ClientAreaPageDomainContacts => "array|null",
+        self::ClientAreaPageDomainDNSManagement => "array|null",
+        self::ClientAreaPageDomainDetails => "array|null",
+        self::ClientAreaPageDomainEPPCode => "array|null",
+        self::ClientAreaPageDomainEmailForwarding => "array|null",
+        self::ClientAreaPageDomainRegisterNameservers => "array|null",
+        self::ClientAreaPageDomains => "array|null",
+        self::ClientAreaPageDownloads => "array|null",
+        self::ClientAreaPageEmails => "array|null",
+        self::ClientAreaPageHome => "array|null",
+        self::ClientAreaPageInvoices => "array|null",
+        self::ClientAreaPageKnowledgebase => "array|null",
+        self::ClientAreaPageLogin => "array|null",
+        self::ClientAreaPageLogout => "array|null",
+        self::ClientAreaPageMassPay => "array|null",
+        self::ClientAreaPageNetworkIssues => "array|null",
+        self::ClientAreaPagePasswordReset => "array|null",
+        self::ClientAreaPageProductDetails => "array|null",
+        self::ClientAreaPageProductsServices => "array|null",
+        self::ClientAreaPageProfile => "array|null",
+        self::ClientAreaPageQuotes => "array|null",
+        self::ClientAreaPageRegister => "array|null",
+        self::ClientAreaPageSecurity => "array|null",
+        self::ClientAreaPageServerStatus => "array|null",
+        self::ClientAreaPageSubmitTicket => "array|null",
+        self::ClientAreaPageSupportTickets => "array|null",
+        self::ClientAreaPageUnsubscribe => "array|null",
+        self::ClientAreaPageUpgrade => "array|null",
+        self::ClientAreaPageViewEmail => "array|null",
+        self::ClientAreaPageViewInvoice => "array|null",
+        self::ClientAreaPageViewQuote => "array|null",
+        self::ClientAreaPageViewTicket => "array|null",
+        self::ClientAreaPageViewWHOIS => "array|null",
+    ];
 }

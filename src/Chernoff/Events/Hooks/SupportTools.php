@@ -6,7 +6,7 @@ namespace Chernoff\Events\Hooks;
  * Class SupportTools
  * @package Chernoff\Events\Hooks
  */
-class SupportTools
+class SupportTools extends Hook
 {
     const
         AnnouncementAdd = "AnnouncementAdd",
@@ -18,4 +18,16 @@ class SupportTools
         NetworkIssueEdit = "NetworkIssueEdit",
         NetworkIssueReopen = "NetworkIssueReopen"
     ;
+
+    /** @var array */
+    protected static $expectedReturn = [
+        self::AnnouncementAdd => null,
+        self::AnnouncementEdit => null,
+        self::FileDownload => null,
+        self::NetworkIssueAdd => null,
+        self::NetworkIssueClose => null,
+        self::NetworkIssueDelete => null,
+        self::NetworkIssueEdit => null,
+        self::NetworkIssueReopen => null,
+    ];
 }

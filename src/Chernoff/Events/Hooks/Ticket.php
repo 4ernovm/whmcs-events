@@ -6,7 +6,7 @@ namespace Chernoff\Events\Hooks;
  * Class Ticket
  * @package Chernoff\Events\Hooks
  */
-class Ticket
+class Ticket extends Hook
 {
     const
         AdminAreaViewTicketPage = "AdminAreaViewTicketPage",
@@ -20,4 +20,18 @@ class Ticket
         TicketUserReply = "TicketUserReply",
         TransliterateTicketText = "TransliterateTicketText"
     ;
+
+    /** @var array */
+    protected static $expectedReturn = [
+        self::AdminAreaViewTicketPage => "string|null",
+        self::SubmitTicketAnswerSuggestions => "array|null",
+        self::TicketAddNote => null,
+        self::TicketAdminReply => null,
+        self::TicketClose => null,
+        self::TicketOpen => null,
+        self::TicketPiping => null,
+        self::TicketStatusChange => null,
+        self::TicketUserReply => null,
+        self::TransliterateTicketText => null,
+    ];
 }
