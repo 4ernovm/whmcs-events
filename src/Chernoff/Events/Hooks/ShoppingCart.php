@@ -6,7 +6,7 @@ namespace Chernoff\Events\Hooks;
  * Class ShoppingCart
  * @package Chernoff\Events\Hooks
  */
-class ShoppingCart
+class ShoppingCart extends Hook
 {
     const
         AcceptOrder = "AcceptOrder",
@@ -30,4 +30,28 @@ class ShoppingCart
         ShoppingCartValidateDomainsConfig = "ShoppingCartValidateDomainsConfig",
         ViewOrderDetailsPage = "ViewOrderDetailsPage"
     ;
+
+    /** @var array */
+    protected static $expectedReturn = [
+        self::AcceptOrder => null,
+        self::AddonFraud => null,
+        self::AfterFraudCheck => null,
+        self::AfterShoppingCartCheckout => null,
+        self::CancelOrder => null,
+        self::CartTotalAdjustment => "array|null",
+        self::DeleteOrder => null,
+        self::FraudOrder => null,
+        self::OrderAddonPricingOverride => "array|null",
+        self::OrderDomainPricingOverride => "array|null",
+        self::OrderProductPricingOverride => "array|null",
+        self::OverrideOrderNumberGeneration => "array|null",
+        self::PendingOrder => null,
+        self::PreCalculateCartTotals => null,
+        self::PreShoppingCartCheckout => null,
+        self::RunFraudCheck => "bool|null",
+        self::ShoppingCartCheckoutCompletePage => "string|null",
+        self::ShoppingCartValidateDomain => "array|null",
+        self::ShoppingCartValidateDomainsConfig => "array|null",
+        self::ViewOrderDetailsPage => null,
+    ];
 }
