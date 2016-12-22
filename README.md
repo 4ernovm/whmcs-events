@@ -11,7 +11,7 @@ Add `4ernovm/whmcs-events` as a requirement to composer.json:
 ```json
 {
     "require": {
-        "4ernovm/whm-events": "0.1.*"
+        "4ernovm/whm-events": "0.2.*"
     }
 }
 ```
